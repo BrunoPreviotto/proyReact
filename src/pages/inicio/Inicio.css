@@ -1,0 +1,22 @@
+.section{
+    padding:100px 20px;
+}
+
+#section1{
+    background-color: var(--color-6);
+    color: var(--color-dos);
+}
+
+#section2{
+    background-color: var(--color-7);
+    color: var(--color-dos);
+}
+
+#section3{
+    background-color: var(--color-8);
+    color: var(--color-dos);
+}
+
+.icon-flecha{
+    rotate: 20px;
+}

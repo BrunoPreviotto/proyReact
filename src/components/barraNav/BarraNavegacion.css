@@ -1,0 +1,38 @@
+
+.contenedor-nav{
+    background-color: var(--color-uno);
+    box-shadow: 10px -10px 10px 10px;
+}
+
+/*a:hover, a:link, a:active, a:visited{
+    color: var(--color-dos);
+}*/
+
+.link_uno{
+    background-color: var(--color-dos) !important;
+}
+
+.link-dos{
+    color: var(--color-dos) !important;
+}
+
+.link-tres{
+    color: var(--color-cuatro) !important;
+    text-decoration: none;
+}
+
+.dropDownBarra{
+    background-color: var(--color-uno) !important;
+    color: var(--color-dos) !important;
+    border-color: var(--color-dos) !important;
+
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 100,
+  'GRAD' -25,
+  'opsz' 20
+}

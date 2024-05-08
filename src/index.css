@@ -1,3 +1,15 @@
+:root{
+    --color-uno: rgb(189, 216, 241, 0.2);
+    --color-dos: rgb(33, 65, 119);
+    --color-tres: rgb(54, 103, 166);
+    --color-cuatro: rgb(130, 166, 203);
+
+    --color-5: rgb(189, 216, 241, 0.5);
+    --color-6: rgb(33, 65, 119, 0.5);
+    --color-7: rgb(54, 103, 166, 0.5);
+    --color-8: rgb(130, 166, 203, 0.5);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +22,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.color-0{
+  color: white;
+}
+
+.bg-1{
+  background-color: var(--color-uno);
+}
+
+.bg-2{
+  background-color: var(--color-dos) !important;
+}
+
+.bg-3{
+  background-color: var(--color-tres);
+}
+
+.bg-4{
+  background-color: var(--color-cuatro);
+}
+
+.bg-5{
+  background-color: var(--color-5);
+}
+
+.bg-6{
+  background-color: var(--color-6);
+}
+
+.bg-7{
+  background-color: var(--color-7);
+}
+
+.bg-8{
+  background-color: var(--color-8);
 }

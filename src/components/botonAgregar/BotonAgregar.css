@@ -1,0 +1,42 @@
+
+.boton-efecto:hover{
+    
+}
+
+.boton-agregar{
+    box-shadow: 0px 1px 10px 0.1px var(--color-tres) inset !important;
+    position: relative;
+    border-radius: 10%;
+    border-color: var(--color-dos);
+    border-width: 0.15rem;
+    width: 35px !important;
+    height: 35px !important;
+    background-color: var(--color-cuatro) !important;
+    color: var(--color-dos);
+    transition:  .5s ease-in;
+    z-index: 1;
+}
+
+.boton-agregar::before,
+.boton-agregar::after{
+    position: absolute;
+    content: '';
+    z-index: -1;
+}
+
+
+
+.boton-agregar:hover {
+    color:var(--color-cuatro) !important;
+    background-color: var(--color-tres) !important;
+    border-color: var(--color-cuatro);
+    box-shadow: 0 0 0.50rem var(--color-tres) !important;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 48
+}

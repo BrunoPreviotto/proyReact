@@ -1,8 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import {Card} from './components/Card';
+import {Card} from './components/card/Card';
+
+import { BarraNavegacion } from './components/barraNav/BarraNavegacion';
+
+
+
 import { useFetch } from './useFetch';
 import React, { useState, useEffect } from 'react';
+
+import { Inicio } from './pages/inicio/Inicio';
 
 function App() {
 
@@ -10,13 +17,15 @@ function App() {
   const datos = useFetch("https://fakestoreapi.com/products");
 
   
-
-  return (
+ return (
     /* TARJETAS QUE CONTIENEN TODOS LOS PRODUCTOS */ 
     <div className="App">
-      <Card datos={datos}></Card>
+      <BarraNavegacion></BarraNavegacion>
+      <Inicio></Inicio>
     </div>
+
+    
   );
 }
 
-export default App;
+export {App};

@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Producto } from './components/Producto';
+
+import { Alumno } from './model/Alumno';
+import {ListaFamiliares} from './pages/familia/ListaFamiliares';
+import { Lista } from './pages/list/Lista';
+import { Detalle } from './pages/detalle/Detalle';
+
+
+
+
 
 const router = createBrowserRouter([
    {
@@ -13,8 +21,20 @@ const router = createBrowserRouter([
     element: <App/>
    },
    {
-    path: '/producto/:id',
-    element: <Producto/>
+    path: '/alumnos',
+    element: <Alumno/>
+   },
+   {
+    path: '/detalle',
+    element: <Detalle/>
+   },
+   {
+    path: '/familiares',
+    element: <ListaFamiliares></ListaFamiliares>
+   },
+   {
+    path: '/lista/:objetoParametro',
+    element: <Lista></Lista>
    }
 ]);
 

@@ -1,0 +1,45 @@
+
+
+.cont-img{
+    background-color: var(--color-uno);
+    
+   
+}
+
+.card-desc{
+    background-color: var(--color-dos) !important;
+}
+
+
+.cuerpo-card{
+    background-color: var(--color-5);
+   
+}
+
+.badge{
+    background-color: var(--color-dos) !important;
+    
+}
+
+
+.badge-pequeño{
+    font-size: 15px;
+}
+
+.badge-grande{
+    font-size: 25px;
+    
+}
+
+.boton-agregar{
+    width: 25px;
+    height: 25px;
+    padding: 0%;
+
+}
+
+
+.sin-decoracion{
+    list-style: none;
+}
+

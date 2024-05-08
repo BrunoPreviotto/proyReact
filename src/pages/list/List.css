@@ -1,0 +1,29 @@
+table{
+   
+    
+}
+
+table thead th{
+    background-color: var(--color-dos) !important;
+    color: white !important;
+    
+}
+
+table tbody tr:nth-child(odd) td{
+   background-color: var(--color-cuatro);
+    color: var(--color-dos) !important;
+}
+
+table tbody tr:nth-child(even) td{
+   /* background-color: var(--color-cuatro);*/
+    color: var(--color-tres) !important;
+}
+
+
+
+
+
+
+
+
+
