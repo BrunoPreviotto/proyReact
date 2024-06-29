@@ -1,10 +1,11 @@
 import { HTMLInputTypeAttribute } from "react";
 
 export interface Objeto{
+    getId() : number;
     obtenerObjeto() : {};
     obtenerTipoDato(dato : any) : string;
-    setAllProperties(prop : string, val : string) : Objeto | undefined;
-    getAll(val : string) : string | undefined;
     obtenerClaves() : string[];
     obtenerTipoElemento(dato : string) : string;
+    obtenerNombreObjeto() : string;
+    setPropiedades(mapa: Map<string, string>) : void;
 }

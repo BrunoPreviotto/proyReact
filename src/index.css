@@ -59,3 +59,34 @@ code {
 .bg-8{
   background-color: var(--color-8);
 }
+
+
+.boton-comportamieto{
+    
+    position: relative !important;
+    
+    border-color: var(--color-dos) !important;
+    border-width: 0.15rem !important;
+    transition:  .5s ease-in !important;
+    z-index: 1 !important;
+}
+
+.boton-comportamieto::before,
+.boton-comportamieto::after{
+    position: absolute !important;
+    content: '' !important;
+    z-index: -1 !important;
+} 
+
+.boton-oscuro{
+  color: var(--color-dos) !important;
+  background-color: var(--color-cuatro) !important;
+}
+
+.boton-oscuro:hover {
+    color:var(--color-cuatro) !important;
+    background-color: var(--color-tres) !important;
+    border-color: var(--color-cuatro);
+    box-shadow: 0 0 0.50rem var(--color-tres) !important;
+}
+

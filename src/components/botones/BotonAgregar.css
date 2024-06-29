@@ -1,0 +1,15 @@
+
+.boton-agregar{
+    width: 35px !important;
+    height: 35px !important;
+}
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 48
+}

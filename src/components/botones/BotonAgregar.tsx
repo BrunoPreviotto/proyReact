@@ -7,6 +7,9 @@ import './BotonAgregar.css';
 
 
 
+
+
+
 interface Props{
     toggleModal: () => void;
 }
@@ -21,7 +24,7 @@ return <div className="">
           
            <div  className="">
                 
-                <Button className="boton-agregar" onClick={toggleModal}>
+                <Button className="boton-agregar boton-comportamieto boton-oscuro" onClick={toggleModal}>
                     <IoMdAdd size={30} className="" ></IoMdAdd>
                 </Button>   
                 

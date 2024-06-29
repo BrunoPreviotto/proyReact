@@ -1,66 +1,89 @@
 import { HTMLInputTypeAttribute } from "react";
 import { Objeto } from "../interfaces/Objeto";
+import { Curso } from "./Curso";
+import { Familiar } from "./Familiar";
+import { GrupoFamiliar } from "./GrupoFamiliar";
+import { Responsable } from "./Responsable";
+import { Persona } from "./Persona";
+import { Colaborador } from "./Colaborador";
 
-class Alumno implements Objeto{
-  #id : number | undefined;
-  #nombre : string | undefined;
-  #apellido : string | undefined;
-  #edad : number | undefined;
+
+
+class Alumno extends Persona implements Objeto{
+  #curso: Curso | undefined;
+  #gruposFamiliares: GrupoFamiliar | undefined;
+  #responsables: Responsable[] | undefined;
+  #familiares: Familiar[] | undefined;
+  
   
 
-  constructor(id : number, nombre : string, apellido : string, edad : number){
-    this.#id = id;
-    this.#nombre = nombre;
-    this.#apellido = apellido;
-    this.#edad = edad;
+  constructor(id : number, 
+              nombre : string, 
+              apellido : string, 
+              edad : number, 
+              descripcion: string,
+              curso:Curso, 
+              grupoFamiliar:GrupoFamiliar, 
+              responsables:Responsable[], 
+              familiares:Familiar[],
+              activo: boolean
+            ){
+    super(id, nombre, apellido, edad, descripcion, activo);
+   
+      
+      this.#curso=curso;
+      this.#gruposFamiliares=grupoFamiliar;
+      this.#responsables=responsables;
+      this.#familiares=familiares;
+    
+    
   }
+
+  setFamiliares(familiares:Familiar[]){
+    this.#familiares = familiares;
+  }
+
 
   
 
-  setAllProperties(prop : string, val : string) : Alumno | undefined{
-    
-    switch (prop.toLocaleLowerCase()) {
-      case 'edad':
-        this.#edad = Number(val);
-        break;
-      case 'nombre':
-        this.#nombre =  val;
-        break;
-      case 'apellido':
-        this.#apellido =  val;
-        break;
-      default:
-        break;
-    }
-    
-    
-    return this;
-    
-    
+  getId(): number {
+    return this.id;
   }
-  getAll(val : string) : string | undefined{
-    switch (val.toLocaleLowerCase()) {
-      case 'edad':
-        return String(this.#edad);
-        break;
-      case 'nombre':
-        return this.#nombre;
-        break;
-      case 'apellido':
-        return this.#apellido;
-        break;
-      default:
-        return undefined;
-        break;
+
+  setPropiedades(mapa: Map<string, string>){
+    
+    Array.from(mapa.entries()).map(([clave, valor]) => {
+      console.log(clave);
+      switch (clave) {
+        case 'Nombre':
+          this.setNombre(valor);
+          break;
+      }
     }
+      
+    );
   }
+
+  obtenerNombreObjeto(): string {
+    return 'alumnos';
+  }
+
+  
+  
+  
+  
+  
+ 
 
   obtenerObjeto() : {}{
     return {
-      ID : this.#id,
-      Edad: this.#edad,
-      Nombre: this.#nombre,
-      Apellido: this.#apellido
+      ID : this.id,
+      Nombre: this.nombre,
+      Apellido: this.apellido,
+      Edad: this.edad,
+      Descripcion: this.descripcion,
+      activo: this.activo,
+      Familiares: this.#familiares
     }
   }
 
@@ -68,23 +91,24 @@ class Alumno implements Objeto{
     return ['Nombre', 'Apellido', 'Edad'];
   };
 
-  getMap(){
-    const mapa = new Map();
-    mapa.set('ID', this.#id);
-    mapa.set('Nombre', this.#nombre);
-    mapa.set('Apellido', this.#apellido);
-    mapa.set('Edad', this.#edad);
-    return mapa;
-  }
-
-  obtenerTipoElemento(dato : string) : string{
+  
+obtenerTipoElemento(dato : string) : string{
     switch(dato){
       case 'Nombre':
+        return 'text';
+        break;
+      case 'Apellido':
         return 'text';
         break;
       case 'Edad':
           return 'number';
           break;
+      case 'Descripcion':
+        return 'textArea';
+        break;
+      case 'Familiares':
+        return 'list';
+        break;
       default:
         return ''; 
          
@@ -92,13 +116,21 @@ class Alumno implements Objeto{
   }
 
   obtenerTipoDato(dato : any) : string{
+    
     switch(dato){
       case 'Nombre':
+        return 'text';
+        break;
+      case 'Apellido':
         return 'text';
         break;
       case 'Edad':
           return 'number';
           break;
+      case 'Descripcion':
+        return 'text';
+        break;
+      
       default:
         return ''; 
          
@@ -110,74 +142,3 @@ class Alumno implements Objeto{
 export {Alumno};
 
 
-/*import { useFetch } from "../../useFetch";
-import { BarraNavegacion } from "../principales/BarraNavegacion";
-import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
-import {ListaAlumnos} from './ListaAlumnos';
-
-
-export const FetchDataContext = createContext();
-
-export const Alumno = () => {
- 
-  const {data: alumnosFetch, loading, error, fetchData} = useFetch("http://localhost:9898/alumnos");
-  const spin = Array.from({ length: 5 }, (_, index) => <div class="spinner-grow text-info m-1"></div>);
-  
-  //const {dalumnos, e, l}  = useFetch("http://localhost:9898/alumnos");
-  const [alumnos, setAlumnos] = useState('');
-
-  
-
-  useEffect(() => {
-    if (alumnosFetch) {
-      setAlumnos(alumnosFetch); // Suponiendo que "data" es un objeto JSON con una propiedad "someProperty"
-    }
-  }, [alumnosFetch]);
-  
-  
-  const handleReloadData = () => {
-    fetchData();
-  };
-
-   
-   
-  
-if(error){
-    return <div class="">
-      <BarraNavegacion></BarraNavegacion>
-      
-      <div class="mt-5 text-center">
-        <h1>
-          Error: {error.message}
-        </h1>
-      </div>
-      
-      
-    </div>;
-  }
-  
-  if(loading){
-    
-    return <div class="">
-     <BarraNavegacion></BarraNavegacion>
-
-     <div class="mt-5 text-center">
-      {spin}
-     </div>
-    
-     
-    </div>;
-  }
-
-  return <div class="">
-    
-    <BarraNavegacion></BarraNavegacion>
-    <FetchDataContext.Provider value={handleReloadData}>
-        <ListaAlumnos alumnos={alumnos}></ListaAlumnos>
-    </FetchDataContext.Provider>
-    
-   
-  </div>;
-}
-
-*/

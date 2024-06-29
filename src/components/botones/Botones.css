@@ -1,0 +1,59 @@
+:root{
+  --color-rojo:  rgb(237, 56, 56);
+  --color-gris: #31363F;
+  --color-verde: #9ade7b
+}
+
+.eButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .icoButtonRojo {
+    width: 100%;
+    color: var(--color-rojo);
+  }
+
+  .icoButtonGris {
+    width: 100%;
+    color: var(--color-gris);
+  }
+
+  .icoButtonVerde {
+    color: var(--color-verde);
+  }
+
+  .eButtonR:hover {
+    background-color: rgb(237, 56, 56);
+    overflow: visible;
+  }
+
+  .eButtonG:hover {
+    background-color: var(--color-gris);
+    overflow: visible;
+  }
+
+  .eButtonV:hover {
+    background-color: var(--color-verde);
+    overflow: visible;
+  }
+  
+  .eButton:hover > .icoButtonRojo,.eButton:hover > .icoButtonGris,.eButton:hover > .icoButtonVerde {
+    fill: #fff;
+  }
+
+
+  .eButton:active {
+    transform: scale(0.98);
+  }

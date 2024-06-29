@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Objeto } from '../../interfaces/Objeto';
 import { PrototypeModule } from '../../prototype/PrototypeModule';
+import './Formulario.css';
 
 
 
@@ -14,7 +15,9 @@ interface FormProps {
   toggleModal: () => void;
   objeto: Objeto | undefined;
   tipo: string | undefined;
+  style: string;
 }
+
 
 
 //º
@@ -76,57 +79,70 @@ export const Formulario = (props: FormProps) => {
   }, []);
     
   
-  console.log(choices);
+  const handleSubmit = () => {
+    const crearObj = new PrototypeModule(props.tipo).getPrototype();
+    crearObj?.insertar(formData);
+  }
 
   return <div className="">
 
       
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className={`modal ${props.style}`}>
         <Modal.Header closeButton>
           <Modal.Title>Crear nuevo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
+ 
               <form>
                   
-                  {obj && Object.entries(obj.obtenerObjeto()).map(([clave, valor] : [any, any]) => (
-                            <div key={clave}>
-                               
-                                {clave !== 'ID' && <div className="mb-3 mt-3">
-                               
-                                  <label htmlFor={clave} className="form-label">{clave}</label>
+                  {obj && Object.entries(obj.obtenerObjeto()).map(([cObjeto, vObjeto] : [any, any]) => (
+                            <div key={cObjeto}>
+                              
+                                {cObjeto !== 'ID' && <div className="mb-3 mt-3">
+
+                                  <label htmlFor={cObjeto} className="form-label">{cObjeto}</label>
                                   
-                                  {obj.obtenerTipoElemento(clave) !== 'choice' && 
+                                  {obj.obtenerTipoElemento(cObjeto) !== 'choice' && obj.obtenerTipoElemento(cObjeto) !== 'textArea' &&
                                     <input 
-                                      key={clave} 
-                                      type={`${props.objeto?.obtenerTipoDato(clave)}`} 
+                                      key={cObjeto} 
+                                      type={`${props.objeto?.obtenerTipoDato(cObjeto)}`} 
                                       className="form-control" 
-                                      id={clave} placeholder='' 
-                                      value={formData[clave] || ''} 
-                                      name={clave} 
-                                      onChange={(e) => handleInputChange(clave, e.target.value)} 
+                                      id={cObjeto} placeholder='' 
+                                      value={formData[cObjeto] || ''} 
+                                      name={cObjeto} 
+                                      onChange={(e) => handleInputChange(cObjeto, e.target.value)} 
                                     />
                                   }
 
-                                    
 
-                                  {obj.obtenerTipoElemento(clave) === 'choice' && 
-                                   
+                                  {obj.obtenerTipoElemento(cObjeto) === 'choice' && 
                                     <div>
-                                      
-                                      
-                                      {choices && Array.from(choices.entries()).map(([clave, valor] : [any, any[]]) => (
-                                        <select key={clave} className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                          {valor.map((e : any) => (
-                                            <option>{e}</option>
-                                          ))}
-                                       </select>
+                                      {choices && Array.from(choices.entries()).map(([cChoice, vChoice] : [string, any[]]) => (
+                                        <div>
+                                            { cChoice === cObjeto &&
+                                              <select key={cChoice} className="form-select" id="floatingSelect" aria-label="Floating label select example" onChange={(e) => handleInputChange(cObjeto, e.target.value)}>
+                                                {vChoice.map((e : any) => (
+                                                  <option >{e}</option>
+                                                ))}
+                                              </select>
+                                            }
+                                        </div>
                                         
-                                    ))}
-                                      
-                                      
-                                    
+                                        
+                                      ))}
                                     </div>
+                                  }
+
+                                  {obj.obtenerTipoElemento(cObjeto) === 'textArea' && 
+                                      <div className="form-floating">
+                                        <textarea  
+                                        className="form-control ta" 
+                                        placeholder="Leave a comment here"
+                                        onChange={(e) => handleInputChange(cObjeto, e.target.value)}
+                                        >
+                                        </textarea>
+
+                                      </div>
                                   }
                                   
                                 </div>}
@@ -136,7 +152,7 @@ export const Formulario = (props: FormProps) => {
                   
 
 
-                  <button  className="btn btn-primary">Agregar</button>
+                  <Button  className="boton-agregar-form boton-comportamieto boton-oscuro" onClick={handleSubmit}>Agregar</Button>
                   <br/>
                   <br/>
                   
@@ -147,11 +163,9 @@ export const Formulario = (props: FormProps) => {
           </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cerrar
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
+          
         </Modal.Footer>
       </Modal>
 

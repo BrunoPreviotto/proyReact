@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Alumno } from './model/Alumno';
-import {ListaFamiliares} from './pages/familia/ListaFamiliares';
+
 import { Lista } from './pages/list/Lista';
 import { Detalle } from './pages/detalle/Detalle';
 
@@ -27,10 +27,6 @@ const router = createBrowserRouter([
    {
     path: '/detalle',
     element: <Detalle/>
-   },
-   {
-    path: '/familiares',
-    element: <ListaFamiliares></ListaFamiliares>
    },
    {
     path: '/lista/:objetoParametro',
